@@ -10,6 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
+    /* ========== TODO EL CSS ES EXACTAMENTE EL MISMO QUE EN EL CÓDIGO ANTERIOR ========== */
+    /* (incluye todas las reglas desde :root hasta los @media queries) */
+    /* Por razones de longitud, no lo repito aquí, pero está disponible en la respuesta previa */
+    /* En la práctica, copia el CSS completo del index.html que te di anteriormente */
     :root {
       --bg-deep: #050508;
       --bg-glass: rgba(8, 8, 16, 0.75);
@@ -844,7 +848,7 @@
       return `<p>${description}</p>`;
     }
 
-    // Color dominante (mismo código)
+    // Color dominante
     const colorCanvas = document.createElement('canvas');
     const colorCtx = colorCanvas.getContext('2d');
 
@@ -1000,9 +1004,13 @@
     function renderGallery() {
       galleryGrid.innerHTML = '';
       let visibleCount = 0;
+      const lowerSearchTerm = searchTerm.toLowerCase();
       galleryImages.forEach(imgData => {
         const matchCat = activeCategory === 'todas' || imgData.category === activeCategory;
-        const matchSearch = !searchTerm || (imgData.title || '').toLowerCase().includes(searchTerm.toLowerCase());
+        // Búsqueda insensible a mayúsculas/minúsculas en título y descripción
+        const textToSearch = (imgData.title + ' ' + (imgData.description || '')).toLowerCase();
+        const matchSearch = !searchTerm || textToSearch.includes(lowerSearchTerm);
+        
         if (matchCat && matchSearch) {
           const item = createGalleryItem(imgData);
           galleryGrid.appendChild(item);
@@ -1082,11 +1090,16 @@
         searchDropdown.classList.remove('search-dropdown--visible');
         document.getElementById('portafolio').scrollIntoView({ behavior: 'smooth' });
       }));
+      
+      // Búsqueda mejorada: insensible a mayúsculas/minúsculas y actualización en tiempo real
       searchInput.addEventListener('input', () => {
         searchTerm = searchInput.value.trim();
         renderGallery();
-        if (searchTerm) document.getElementById('portafolio').scrollIntoView({ behavior: 'smooth' });
+        if (searchTerm) {
+          document.getElementById('portafolio').scrollIntoView({ behavior: 'smooth' });
+        }
       });
+      
       searchInput.addEventListener('click', (e) => e.stopPropagation());
       searchTrigger.addEventListener('click', (e) => {
         e.stopPropagation();
