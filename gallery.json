@@ -95,6 +95,14 @@
     "src": "torre.jpg",
     "alt": "Paisaje"
   },
+    {
+    "category": "paisajes",
+    "title": "Arte Urbano",
+    "description": "Vibrantes contrastes en la calle: la fuerza de la tradición y la belleza de la naturaleza.",
+    "instagram": "https://www.instagram.com/p/DZ8UrYklYIA/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "src": "urbano.jpeg",
+    "alt": "Paisaje"
+  },
   {
     "category": "paisajes",
     "title": "Caminando Entre La Elegancia Del Pasado Y La Grandeza Del Presente",
